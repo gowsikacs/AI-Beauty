@@ -15,10 +15,14 @@ def detect_acne(image):
 
     acne_pixels = np.sum(mask>0)
 
-    if acne_pixels < 500:
+    if acne_pixels < 1000:
+        return " Very Low Acne"
+    elif acne_pixels < 5000:
         return "Low Acne"
-    elif acne_pixels < 1500:
+    elif acne_pixels < 15000:
         return "Moderate Acne"
+    elif acne_pixels < 20000:
+        return "High Acne"
     else:
         return "Severe Acne"
 
@@ -31,12 +35,14 @@ def detect_wrinkles(image):
 
     wrinkle_score = np.sum(edges)
 
-    if wrinkle_score < 50000:
+    if wrinkle_score < 100000:
         return "Low Wrinkles"
-    elif wrinkle_score < 100000:
+    elif wrinkle_score < 500000:
         return "Moderate Wrinkles"
+    elif wrinkle_score < 1000000:
+        return "High wrinkles"
     else:
-        return "High Wrinkles"
+        return "No Wrinkles"
 
 
 def detect_dark_circles(image):
@@ -49,9 +55,9 @@ def detect_dark_circles(image):
 
     brightness = np.mean(gray)
 
-    if brightness < 80:
+    if brightness < 150:
         return "Severe Dark Circles"
-    elif brightness < 120:
+    elif brightness < 50:
         return "Moderate Dark Circles"
     else:
         return "Healthy Under-Eye"
