@@ -103,15 +103,26 @@ Hair Condition: {hair}
     return result
 
 
-interface = gr.Interface(
-    fn=beauty_analysis,
-    inputs=gr.Image(type="pil"),
-    outputs="text",
-    title="AI Beauty Passport System",
-    description="Upload a face image for AI skin & hair analysis"
-)
+import streamlit as st
+from PIL import Image
 
-interface.launch()
-    
-       
-   
+# Title and description
+st.title("AI Beauty Passport System")
+st.write("Upload a face image for AI skin & hair analysis")
+
+# Upload image
+uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
+
+if uploaded_file is not None:
+    # Open image
+    image = Image.open(uploaded_file)
+
+    # Show image
+    st.image(image, caption="Uploaded Image", use_column_width=True)
+
+    # Run your model function
+    result = beauty_analysis(image)
+
+    # Display output
+    st.subheader("Analysis Result")
+    st.write(result)
