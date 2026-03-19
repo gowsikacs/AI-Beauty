@@ -62,7 +62,15 @@ def detect_dark_circles(image):
     else:
         return "Healthy Under-Eye"
 
-
+def detect_skin_type(image):
+ brightness_full = np.mean(gray)
+    if brightness_full < 80:
+        skin_type = "Dry"
+    elif brightness_full < 150:
+        skin_type = "Normal"
+    else:
+        skin_type = "Oily"
+        
 def detect_hair_loss(image):
 
     gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
@@ -90,7 +98,50 @@ def beauty_analysis(image):
     hair = detect_hair_loss(img)
     skin = detect_skin_type(img)
 
-    result = f"""
+    result = f""
+
+def beauty_recommendation(acne, wrinkle, dark_circle, hair, skin_type):
+
+    recommendations = []
+
+    if "Moderate" in acne or "Severe" in acne:
+        recommendations.append("Use Salicylic Acid Cleanser")
+        recommendations.append("Acne Treatment Facial")
+
+    if "Moderate" in wrinkle or "High" in wrinkle:
+        recommendations.append("Use Retinol Cream")
+        recommendations.append("Anti-aging Facial")
+
+    if "Dark" in dark_circle:
+        recommendations.append("Vitamin C Eye Cream")
+        recommendations.append("Improve Sleep Schedule")
+
+    if "Hair Loss" in hair:
+        recommendations.append("Use Biotin Shampoo")
+        recommendations.append("Hair Growth Serum")
+        recommendations.append("Scalp Therapy")
+
+    if "Dry" in skin_type or "Dull" in skin_type:
+        recommendations.append("Use gentle and thick moisturizers")
+        recommendations.append("Use Hydrating Cleanser")
+        recommendations.append("Avoid Hot Showers")
+
+    if "Oily" in skin_type or "Shiny" in skin_type:
+        recommendations.append("Use Matte-finish sunscreen")
+        recommendations.append("Use Niacinamide Serum")
+        recommendations.append("Using Gel-based cleanser contain Salicylic Acid")
+
+    return recommendations
+
+
+rec = beauty_recommendation(acne_level, wrinkle_level, dark_circle_level, hair_result,skin_type)
+
+print("------ Personalized Beauty Plan ------")
+
+for r in rec:
+    print("-", r)
+    
+   
 AI BEAUTY PASSPORT REPORT
 
 Acne Level: {acne}
@@ -104,7 +155,7 @@ Hair Condition: {hair}
 Skin Type: {skin_type}
 
 personalized recommendation: {beauty_recommendations}
-"""
+""
 
     return result
 
@@ -129,6 +180,11 @@ if uploaded_file is not None:
 
     # Run your model function
     result = beauty_analysis(image)
+    rec = beauty_recommendation(**result)
+
+st.write("### Recommendations")
+for r in rec:
+    st.write("-", r)
 
     # Display output
     st.subheader("Analysis Result")
