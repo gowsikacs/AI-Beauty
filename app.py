@@ -93,17 +93,6 @@ def detect_hair_loss(image):
 
 
 
-def beauty_analysis(image):
-
-    img = np.array(image)
-
-    acne = detect_acne(img)
-    wrinkle = detect_wrinkles(img)
-    dark = detect_dark_circles(img)
-    hair = detect_hair_loss(img)
-    skin = detect_skin_type(img)
-
-    result = f""
 
 def beauty_recommendation(acne, wrinkle, dark_circle, hair, skin_type):
 
@@ -145,9 +134,18 @@ print("------ Personalized Beauty Plan ------")
 
 for r in rec:
     print("-", r)
-    
+def beauty_analysis(image):
+
+    img = np.array(image)
+
+    acne = detect_acne(img)
+    wrinkle = detect_wrinkles(img)
+    dark = detect_dark_circles(img)
+    hair = detect_hair_loss(img)
+
+    result = f"""  
    
-AI BEAUTY PASSPORT REPORT
+ AI BEAUTY PASSPORT REPORT
 
 Acne Level: {acne}
 
@@ -160,7 +158,7 @@ Hair Condition: {hair}
 Skin Type: {skin_type}
 
 personalized recommendation: {beauty_recommendations}
-""
+"""
 
     return result
 
