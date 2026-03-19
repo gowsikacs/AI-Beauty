@@ -94,7 +94,7 @@ def detect_hair_loss(image):
 
 
 
-def beauty_recommendation(acne_pixels, detect_wrinkles, detect_dark_circles, detect_hair_loss, detect_skin_type):
+def beauty_recommendation(acne, wrinkls, dark_circles, hair, skin_type):
 
     recommendations = []
 
@@ -128,7 +128,7 @@ def beauty_recommendation(acne_pixels, detect_wrinkles, detect_dark_circles, det
     return recommendations
 
 
-rec = beauty_recommendation(acne_pixels,detect_wrinkles,detect_dark_circles, detect_hair_loss,detect_skin_type)
+rec = beauty_recommendation(acne,wrinkles,dark_circles,hair, skin_type)
 
 print("------ Personalized Beauty Plan ------")
 
