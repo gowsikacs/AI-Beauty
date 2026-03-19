@@ -92,10 +92,6 @@ def detect_hair_loss(image):
         return "Healthy Hair"
 
 
-print("------ Personalized Beauty Plan ------")
-
-for r in rec:
-    print("-", r)
 def beauty_analysis(image):
 
     img = np.array(image)
