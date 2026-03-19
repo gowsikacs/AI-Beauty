@@ -79,6 +79,66 @@ def detect_hair_loss(image):
         return "Healthy Hair"
 
 
+def detect_skin_type(image):
+     gray = cv2.cvtColor(face, cv2.COLOR_RGB2GRAY)
+
+    brightness = np.mean(gray)
+
+    if brightness < 80:
+        result = "Dry / Dull Skin"
+    elif brightness < 150:
+        result = "Normal Skin"
+    else:
+        result = "Oily / Shiny Skin"
+
+    return brightness, result
+
+brightness, skin_type = analyze_skin_brightness(face_to_analyze)
+
+print("Skin Brightness:", brightness)
+print("Skin Condition:", skin_type)
+
+def beauty_recommendation(acne, wrinkle, dark_circle, hair, skin_type):
+
+    recommendations = []
+
+    if "Moderate" in acne or "Severe" in acne:
+        recommendations.append("Use Salicylic Acid Cleanser")
+        recommendations.append("Acne Treatment Facial")
+
+    if "Moderate" in wrinkle or "High" in wrinkle:
+        recommendations.append("Use Retinol Cream")
+        recommendations.append("Anti-aging Facial")
+
+    if "Dark" in dark_circle:
+        recommendations.append("Vitamin C Eye Cream")
+        recommendations.append("Improve Sleep Schedule")
+
+    if "Hair Loss" in hair:
+        recommendations.append("Use Biotin Shampoo")
+        recommendations.append("Hair Growth Serum")
+        recommendations.append("Scalp Therapy")
+
+    if "Dry" in skin_type or "Dull" in skin_type:
+        recommendations.append("Use gentle and thick moisturizers")
+        recommendations.append("Use Hydrating Cleanser")
+        recommendations.append("Avoid Hot Showers")
+
+    if "Oily" in skin_type or "Shiny" in skin_type:
+        recommendations.append("Use Matte-finish sunscreen")
+        recommendations.append("Use Niacinamide Serum")
+        recommendations.append("Using Gel-based cleanser contain Salicylic Acid")
+
+    return recommendations
+
+rec = beauty_recommendation(acne_level, wrinkle_level, dark_circle_level, hair_result,skin_type)
+
+print("------ Personalized Beauty Plan ------")
+
+for r in rec:
+    print("-", r)
+
+
 def beauty_analysis(image):
 
     img = np.array(image)
@@ -87,6 +147,7 @@ def beauty_analysis(image):
     wrinkle = detect_wrinkles(img)
     dark = detect_dark_circles(img)
     hair = detect_hair_loss(img)
+    skin = detect_skin_type(img)
 
     result = f"""
 AI BEAUTY PASSPORT REPORT
@@ -98,9 +159,14 @@ Wrinkle Level: {wrinkle}
 Dark Circles: {dark}
 
 Hair Condition: {hair}
+
+Skin Type: {skin_type}
+
+personalized recommendation: {beauty_recommendations}
 """
 
     return result
+
 
 
 import streamlit as st
