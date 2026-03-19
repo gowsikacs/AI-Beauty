@@ -64,11 +64,11 @@ def detect_dark_circles(image):
 
 def detect_skin_type(image):
     
-brightness_full = np.mean(gray)
+brightness = np.mean(gray)
 
-    if brightness_full < 80:
+    if brightness < 80:
         skin_type = "Dry"
-    elif brightness_full < 150:
+    elif brightness < 150:
         skin_type = "Normal"
     else:
         skin_type = "Oily"
