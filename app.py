@@ -100,6 +100,7 @@ def beauty_analysis(image):
     wrinkle = detect_wrinkles(img)
     dark = detect_dark_circles(img)
     hair = detect_hair_loss(img)
+    skin_type = detect_skin_type(img)
 
     result = f"""  
    
