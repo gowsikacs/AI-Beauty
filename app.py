@@ -63,15 +63,18 @@ def detect_dark_circles(image):
         return "Healthy Under-Eye"
 
 def detect_skin_type(image):
-    
-brightness = np.mean(gray)
+    gray = cv2.cvtColor(face, cv2.COLOR_RGB2GRAY)
+
+    brightness = np.mean(gray)
 
     if brightness < 80:
-        skin_type = "Dry"
+        result = "Dry / Dull Skin"
     elif brightness < 150:
-        skin_type = "Normal"
+        result = "Normal Skin"
     else:
-        skin_type = "Oily"
+        result = "Oily / Shiny Skin"
+
+    return brightness, result
         
 def detect_hair_loss(image):
 
