@@ -82,7 +82,6 @@ def detect_hair_loss(image):
 def detect_skin_type(image):
      gray = cv2.cvtColor(face, cv2.COLOR_RGB2GRAY)
      brightness = np.mean(gray)
-
     if brightness < 80:
         result = "Dry / Dull Skin"
     elif brightness < 150:
