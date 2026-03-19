@@ -94,7 +94,7 @@ def detect_hair_loss(image):
 
 
 
-def beauty_recommendation(detect_acne, detect_wrinkles, detect_dark_circles, detect_hair_loss, detect_skin_type):
+def beauty_recommendation(acne_pixels, detect_wrinkles, detect_dark_circles, detect_hair_loss, detect_skin_type):
 
     recommendations = []
 
