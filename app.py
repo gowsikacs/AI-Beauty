@@ -144,9 +144,9 @@ if uploaded_file is not None:
     result = beauty_analysis(image)
   
 
-st.write("### Recommendations")
-for r in rec:
-    st.write("-", r)
+#st.write("### Recommendations")
+#for r in rec:
+    #st.write("-", r)
 
     # Display output
     st.subheader("Analysis Result")
