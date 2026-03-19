@@ -63,7 +63,9 @@ def detect_dark_circles(image):
         return "Healthy Under-Eye"
 
 def detect_skin_type(image):
+    
 brightness_full = np.mean(gray)
+
     if brightness_full < 80:
         skin_type = "Dry"
     elif brightness_full < 150:
