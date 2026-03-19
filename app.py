@@ -128,7 +128,7 @@ def beauty_recommendation(acne, wrinkle, dark_circle, hair, skin_type):
     return recommendations
 
 
-rec = beauty_recommendation(acne_level, wrinkle_level, dark_circle_level, hair_result,skin_type)
+rec = beauty_recommendation(acne, wrinkle, dark_circle, hair,skin_type)
 
 print("------ Personalized Beauty Plan ------")
 
