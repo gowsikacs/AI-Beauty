@@ -61,6 +61,8 @@ def detect_dark_circles(image):
         return "High Dark Circles"
     elif brightness < 50:
         return "Moderate Dark Circles"
+    elif brightness < 25:
+        return "Low Dark Circles"
     else:
         return "Healthy Under-Eye"
 
