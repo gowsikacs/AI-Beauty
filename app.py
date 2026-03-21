@@ -57,6 +57,8 @@ def detect_dark_circles(image):
 
     if brightness < 150:
         return "Severe Dark Circles"
+    elif brightness < 100:
+        return "High Dark Circles"
     elif brightness < 50:
         return "Moderate Dark Circles"
     else:
