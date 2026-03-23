@@ -126,7 +126,7 @@ Skin Type: {skin_type}
     return result
 
 def beauty_recommendation(acne, wrinkle, dark_circle, hair, skin_type):
-rec = []
+recommendation = []
   if "Moderate" in acne or "Severe" in acne:
         rec.append("Use Salicylic Acid Cleanser")
         rec.append("Anti-acne facial treatment")
@@ -144,7 +144,7 @@ rec = []
  if skin_type == "Dry Skin":
         rec.append("Use Hyaluronic Moisturizer")
 
- return rec
+ return recommendation
 
 def predictive_homecare(acne, wrinkle, dark_circle, hair):
 
@@ -194,7 +194,7 @@ if uploaded_file is not None:
     st.subheader("Personalized Beauty Recommendation") 
 
    st.write("### Recommendations")
-    for r in rec:
+    for r in recommendation:
      st.write("-", r)
 
  morning, night, haircare = predictive_homecare(acne, wrinkle, dark_circle, hair)
