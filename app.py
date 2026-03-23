@@ -30,7 +30,7 @@ def detect_acne(image):
     elif acne_pixels < 20000:
         return "Severe Acne"
     else:
-        return "High Acne:
+        return "High Acne"
 
 
 def detect_wrinkles(face):
