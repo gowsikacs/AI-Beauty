@@ -127,21 +127,21 @@ Skin Type: {skin_type}
 
 def beauty_recommendation(acne, wrinkle, dark_circle, hair, skin_type):
        recommendation = []
-      if "Moderate" in acne or "Severe" in acne:
+  if "Moderate" in acne or "Severe" in acne:
         rec.append("Use Salicylic Acid Cleanser")
         rec.append("Anti-acne facial treatment")
 
-     if "Moderate" in wrinkle or "High" in wrinkle:
+  if "Moderate" in wrinkle or "High" in wrinkle:
         rec.append("Use Retinol Anti-aging Cream")
 
-     if "Dark" in dark_circle:
+  if "Dark" in dark_circle:
         rec.append("Vitamin C Eye Cream")
 
-     if "Hair Loss" in hair:
+  if "Hair Loss" in hair:
         rec.append("Use Biotin Shampoo")
         rec.append("Hair Growth Serum")
 
-    if skin_type == "Dry Skin":
+  if skin_type == "Dry Skin":
         rec.append("Use Hyaluronic Moisturizer")
 
          return recommendation
