@@ -40,11 +40,11 @@ def detect_wrinkles(face):
 
     wrinkle_score = np.sum(edges)
     
-    if wrinkle_score < 100000:
+    if wrinkle_score < 1000000:
         return "Low Wrinkles"
-    elif wrinkle_score < 500000:
+    elif wrinkle_score < 5000000:
         return "Moderate Wrinkles"
-    elif wrinkle_score < 1000000:
+    elif wrinkle_score < 10000000:
         return "High Wrinkles"
     else:
         return "Severe Wrinkles"
@@ -60,11 +60,11 @@ def detect_dark_circles(face):
 
     brightness = np.mean(gray)
 
-    if brightness < 150:
+    if brightness < 200:
         return "Severe Dark Circles"
-    elif brightness < 50:
+    elif brightness < 150:
         return "Moderate Dark Circles"
-    elif brightness <25:
+    elif brightness < 50:
         return "Low Dark Circles"
     else:
         return "Healthy Under-Eye"
