@@ -120,8 +120,8 @@ Hair Condition: {hair}
 
 Skin Type: {skin_type}
 
-Recommendation: {for r in rec:
-    print("-", r)}
+Recommendation:   for r in rec:
+                     print("-", r)
 
 
 
