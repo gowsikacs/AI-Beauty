@@ -3,6 +3,14 @@ import cv2
 import numpy as np
 from PIL import Image
 
+st.title("AI Beauty Passport System")
+st.write("Upload a face image for AI skin & hair analysis")
+
+uploaded_file = st.file_uploader("Upload Image", type=["jpg","png","jpeg"])
+
+# -----------------------------
+# AI ANALYSIS FUNCTIONS
+# -----------------------------
 
 def detect_acne(image):
 
@@ -15,74 +23,65 @@ def detect_acne(image):
 
     acne_pixels = np.sum(mask>0)
 
-    if acne_pixels < 1000:
-        return " Very Low Acne"
-    elif acne_pixels < 5000:
+    if acne_pixels < 500:
         return "Low Acne"
-    elif acne_pixels < 15000:
+    elif acne_pixels < 1500:
         return "Moderate Acne"
-    elif acne_pixels < 20000:
-        return "High Acne"
     else:
         return "Severe Acne"
 
 
-def detect_wrinkles(image):
+def detect_wrinkles(face):
 
-    gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+    gray = cv2.cvtColor(face, cv2.COLOR_RGB2GRAY)
 
     edges = cv2.Canny(gray,100,200)
 
     wrinkle_score = np.sum(edges)
 
-    if wrinkle_score < 100000:
+    if wrinkle_score < 50000:
         return "Low Wrinkles"
-    elif wrinkle_score < 500000:
+    elif wrinkle_score < 100000:
         return "Moderate Wrinkles"
-    elif wrinkle_score < 1000000:
-        return "High wrinkles"
     else:
-        return "No Wrinkles"
+        return "High Wrinkles"
 
 
-def detect_dark_circles(image):
+def detect_dark_circles(face):
 
-    h, w, _ = image.shape
+    h, w, _ = face.shape
 
-    eye_region = image[int(h*0.45):int(h*0.65), int(w*0.2):int(w*0.8)]
+    eye_region = face[int(h*0.45):int(h*0.65), int(w*0.2):int(w*0.8)]
 
     gray = cv2.cvtColor(eye_region, cv2.COLOR_RGB2GRAY)
 
     brightness = np.mean(gray)
 
-    if brightness < 2000:
+    if brightness < 80:
         return "Severe Dark Circles"
-    elif brightness < 150:
-        return "High Dark Circles"
-    elif brightness < 100:
+    elif brightness < 120:
         return "Moderate Dark Circles"
-    elif brightness < 50:
-        return "Low Dark Circles"
     else:
         return "Healthy Under-Eye"
 
-def detect_skin_type(image):
-    gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+
+def analyze_skin_brightness(face):
+
+    gray = cv2.cvtColor(face, cv2.COLOR_RGB2GRAY)
 
     brightness = np.mean(gray)
 
     if brightness < 80:
-        result = "Dry / Dull Skin"
+        return "Dry Skin"
     elif brightness < 150:
-        result = "Normal Skin"
+        return "Normal Skin"
     else:
-        result = "Oily / Shiny Skin"
+        return "Oily Skin"
 
-    return brightness, result
-        
-def detect_hair_loss(image):
 
-    gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+def detect_hair_loss(img):
+
+    gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
 
     edges = cv2.Canny(gray,50,150)
 
@@ -96,78 +95,37 @@ def detect_hair_loss(image):
         return "Healthy Hair"
 
 
-def beauty_analysis(image):
-
-    img = np.array(image)
-
-    acne = detect_acne(img)
-    wrinkle = detect_wrinkles(img)
-    dark = detect_dark_circles(img)
-    hair = detect_hair_loss(img)
-    skin_type = detect_skin_type(img)
-
-    result = f"""  
-   
- AI BEAUTY PASSPORT REPORT
-
-Acne Level: {acne}
-
-Wrinkle Level: {wrinkle}
-
-Dark Circles: {dark}
-
-Hair Condition: {hair}
-
-Skin Type: {skin_type}
-
-Recommendation:   for r in rec:
-                     print("-", r)
-
-
-
-"""
-
-    return result
+# -----------------------------
+# RECOMMENDATION
+# -----------------------------
 
 def beauty_recommendation(acne, wrinkle, dark_circle, hair, skin_type):
 
-    recommendations = []
+    rec = []
 
     if "Moderate" in acne or "Severe" in acne:
-        recommendations.append("Use Salicylic Acid Cleanser")
-        recommendations.append("Acne Treatment Facial")
+        rec.append("Use Salicylic Acid Cleanser")
+        rec.append("Anti-acne facial treatment")
 
     if "Moderate" in wrinkle or "High" in wrinkle:
-        recommendations.append("Use Retinol Cream")
-        recommendations.append("Anti-aging Facial")
+        rec.append("Use Retinol Anti-aging Cream")
 
     if "Dark" in dark_circle:
-        recommendations.append("Vitamin C Eye Cream")
-        recommendations.append("Improve Sleep Schedule")
+        rec.append("Vitamin C Eye Cream")
 
     if "Hair Loss" in hair:
-        recommendations.append("Use Biotin Shampoo")
-        recommendations.append("Hair Growth Serum")
-        recommendations.append("Scalp Therapy")
+        rec.append("Use Biotin Shampoo")
+        rec.append("Hair Growth Serum")
 
-    if "Dry" in skin_type or "Dull" in skin_type:
-        recommendations.append("Use gentle and thick moisturizers")
-        recommendations.append("Use Hydrating Cleanser")
-        recommendations.append("Avoid Hot Showers")
+    if skin_type == "Dry Skin":
+        rec.append("Use Hyaluronic Moisturizer")
 
-    if "Oily" in skin_type or "Shiny" in skin_type:
-        recommendations.append("Use Matte-finish sunscreen")
-        recommendations.append("Use Niacinamide Serum")
-        recommendations.append("Using Gel-based cleanser contain Salicylic Acid")
+    return rec
 
-    return recommendations
 
-rec = beauty_recommendation(acne_level, wrinkle_level, dark_circle_level, hair_result,skin_type)
-
-print("------ Personalized Beauty Plan ------")
-
-for r in rec:
-    print("-", r)
+# -----------------------------
+# PREDICTIVE HOME CARE PLAN
+# -----------------------------
 
 def predictive_homecare(acne, wrinkle, dark_circle, hair):
 
@@ -192,34 +150,38 @@ def predictive_homecare(acne, wrinkle, dark_circle, hair):
     return morning, night, haircare
 
 
-
-import streamlit as st
-from PIL import Image
-
-# Title and description
-st.title("AI Beauty Passport System")
-st.write("Upload a face image for AI skin & hair analysis")
-
-# Upload image
-uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
+# -----------------------------
+# PROCESS IMAGE
+# -----------------------------
 
 if uploaded_file is not None:
-    # Open image
+
     image = Image.open(uploaded_file)
+    img = np.array(image)
 
-    # Show image
-    st.image(image, caption="Uploaded Image", use_column_width=True)
+    st.image(img, caption="Uploaded Image")
 
-    # Run your model function
-    result = beauty_analysis(image)
+    acne = detect_acne(img)
+    wrinkle = detect_wrinkles(img)
+    dark_circle = detect_dark_circles(img)
+    skin = analyze_skin_brightness(img)
+    hair = detect_hair_loss(img)
+
+    st.subheader("AI Beauty Analysis")
+
+    st.write("Acne:", acne)
+    st.write("Wrinkles:", wrinkle)
+    st.write("Dark Circles:", dark_circle)
+    st.write("Skin Type:", skin)
+    st.write("Hair Condition:", hair)
+
     rec = beauty_recommendation(acne, wrinkle, dark_circle, hair, skin)
 
-    st.subheader("Personalized Beauty Recommendation") 
+    st.subheader("Personalized Beauty Recommendation")
 
-    st.write("### Recommendations")
-    for r in recommendation:
-      st.write("-", r)
-        
+    for r in rec:
+        st.write("-", r)
+
     morning, night, haircare = predictive_homecare(acne, wrinkle, dark_circle, hair)
 
     st.subheader("Predictive Home Care Plan")
@@ -236,6 +198,16 @@ if uploaded_file is not None:
     for h in haircare:
         st.write("-", h)
 
-    # Display output
-    st.subheader("Analysis Result")
-    st.write(result)
+
+
+   
+
+   
+   
+
+
+  
+ 
+
+    
+ 
