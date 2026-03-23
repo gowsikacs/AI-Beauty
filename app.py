@@ -212,7 +212,7 @@ if uploaded_file is not None:
 
     # Run your model function
     result = beauty_analysis(image)
-     rec = beauty_recommendation(acne, wrinkle, dark_circle, hair, skin)
+    rec = beauty_recommendation(acne, wrinkle, dark_circle, hair, skin)
 
     st.subheader("Personalized Beauty Recommendation") 
 
