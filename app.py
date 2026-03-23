@@ -31,8 +31,7 @@ def detect_acne(image):
         return "Severe Acne"
     else:
         return "High Acne"
-
-
+        
 def detect_wrinkles(face):
 
     gray = cv2.cvtColor(face, cv2.COLOR_RGB2GRAY)
@@ -40,12 +39,12 @@ def detect_wrinkles(face):
     edges = cv2.Canny(gray,100,200)
 
     wrinkle_score = np.sum(edges)
-
-   if wrinkle_score  < 1000:
+    
+   if wrinkle_score < 100000:
         result = "Low Wrinkles"
-    elif wrinkle_score <  5000:
+    elif wrinkle_score < 500000:
         result = "Moderate Wrinkles"
-    elif wrinkle_score  < 10000:
+    elif wrinkle_score < 1000000:
         result = "High Wrinkles"
     else:
         result = "Severe Wrinkles"
