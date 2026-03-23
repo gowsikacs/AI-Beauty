@@ -23,11 +23,11 @@ def detect_acne(image):
 
     acne_pixels = np.sum(mask>0)
 
-    if acne_pixels < 5000:
+    if acne_pixels < 50000:
         return "Low Acne"
-    elif acne_pixels < 15000:
+    elif acne_pixels < 150000:
         return "Moderate Acne"
-    elif acne_pixels < 20000:
+    elif acne_pixels < 200000:
         return "Severe Acne"
     else:
         return "High Acne"
