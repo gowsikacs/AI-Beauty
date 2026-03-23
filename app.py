@@ -220,7 +220,7 @@ if uploaded_file is not None:
     for r in recommendation:
       st.write("-", r)
         
- morning, night, haircare = predictive_homecare(acne, wrinkle, dark_circle, hair)
+    morning, night, haircare = predictive_homecare(acne, wrinkle, dark_circle, hair)
 
     st.subheader("Predictive Home Care Plan")
 
