@@ -55,13 +55,13 @@ def detect_dark_circles(image):
 
     brightness = np.mean(gray)
 
-    if brightness < 150:
+    if brightness < 2000:
         return "Severe Dark Circles"
-    elif brightness < 100:
+    elif brightness < 150:
         return "High Dark Circles"
-    elif brightness < 50:
+    elif brightness < 100:
         return "Moderate Dark Circles"
-    elif brightness < 25:
+    elif brightness < 50:
         return "Low Dark Circles"
     else:
         return "Healthy Under-Eye"
