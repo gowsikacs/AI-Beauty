@@ -112,11 +112,12 @@ def beauty_recommendation(acne, wrinkle, dark_circle, hair, skin_type):
         rec.append("Use Salicylic Acid Cleanser")
         rec.append("Anti-acne facial treatment")
 
-    if "Moderate" in wrinkle or "High" in wrinkle:
+    if "Severe" in wrinkle or "High" in wrinkle:
         rec.append("Use Retinol Anti-aging Cream")
 
     if "Dark" in dark_circle:
         rec.append("Vitamin C Eye Cream")
+        rec.append("Improved sleepig schedule")
 
     if "Hair Loss" in hair:
         rec.append("Use Biotin Shampoo")
