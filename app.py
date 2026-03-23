@@ -23,12 +23,14 @@ def detect_acne(image):
 
     acne_pixels = np.sum(mask>0)
 
-    if acne_pixels < 500:
+    if acne_pixels < 5000:
         return "Low Acne"
-    elif acne_pixels < 1500:
+    elif acne_pixels < 15000:
         return "Moderate Acne"
-    else:
+    elif acne_pixels < 20000:
         return "Severe Acne"
+    else:
+        return "High Acne:
 
 
 def detect_wrinkles(face):
@@ -39,13 +41,15 @@ def detect_wrinkles(face):
 
     wrinkle_score = np.sum(edges)
 
-    if wrinkle_score < 50000:
-        return "Low Wrinkles"
-    elif wrinkle_score < 100000:
-        return "Moderate Wrinkles"
+   if wrinkle_score < 100000:
+        result = "Low Wrinkles"
+    elif wrinkle_score < 500000:
+        result = "Moderate Wrinkles"
+    elif wrinkle_score < 1000000:
+        result = "High Wrinkles"
     else:
-        return "High Wrinkles"
-
+        result = "Severe Wrinkles"
+        
 
 def detect_dark_circles(face):
 
@@ -57,10 +61,12 @@ def detect_dark_circles(face):
 
     brightness = np.mean(gray)
 
-    if brightness < 80:
+    if brightness < 200:
         return "Severe Dark Circles"
-    elif brightness < 120:
+    elif brightness < 150:
         return "Moderate Dark Circles"
+    elif brightness <75:
+        return "Low Dark Circles"
     else:
         return "Healthy Under-Eye"
 
@@ -87,9 +93,9 @@ def detect_hair_loss(img):
 
     density = np.sum(edges)/(edges.shape[0]*edges.shape[1])
 
-    if density < 5:
+    if density < 15:
         return "High Hair Loss"
-    elif density < 15:
+    elif density < 50:
         return "Moderate Hair Loss"
     else:
         return "Healthy Hair"
