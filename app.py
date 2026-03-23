@@ -127,7 +127,6 @@ Skin Type: {skin_type}
 
 def beauty_recommendation(acne, wrinkle, dark_circle, hair, skin_type):
   rec = []
-
     if "Moderate" in acne or "Severe" in acne:
         rec.append("Use Salicylic Acid Cleanser")
         rec.append("Anti-acne facial treatment")
