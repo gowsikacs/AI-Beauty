@@ -41,13 +41,13 @@ def detect_wrinkles(face):
     wrinkle_score = np.sum(edges)
     
     if wrinkle_score < 100000:
-        result = "Low Wrinkles"
+        return "Low Wrinkles"
     elif wrinkle_score < 500000:
-        result = "Moderate Wrinkles"
+        return "Moderate Wrinkles"
     elif wrinkle_score < 1000000:
-        result = "High Wrinkles"
+        return "High Wrinkles"
     else:
-        result = "Severe Wrinkles"
+        return "Severe Wrinkles"
         
 
 def detect_dark_circles(face):
@@ -60,11 +60,11 @@ def detect_dark_circles(face):
 
     brightness = np.mean(gray)
 
-    if brightness < 200:
+    if brightness < 150:
         return "Severe Dark Circles"
-    elif brightness < 150:
+    elif brightness < 50:
         return "Moderate Dark Circles"
-    elif brightness <75:
+    elif brightness <25:
         return "Low Dark Circles"
     else:
         return "Healthy Under-Eye"
@@ -104,7 +104,7 @@ def detect_hair_loss(img):
 # RECOMMENDATION
 # -----------------------------
 
-def beauty_recommendation(acne, wrinkle, dark_circle, hair, skin_type):
+def beauty_recommendation(acne, wrinkles, dark_circle, hair, skin_type):
 
     rec = []
 
@@ -181,7 +181,7 @@ if uploaded_file is not None:
     st.write("Skin Type:", skin)
     st.write("Hair Condition:", hair)
 
-    rec = beauty_recommendation(acne, wrinkle, dark_circle, hair, skin)
+    rec = beauty_recommendation(acne, wrinkles, dark_circle, hair, skin)
 
     st.subheader("Personalized Beauty Recommendation")
 
