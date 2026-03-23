@@ -120,31 +120,54 @@ Hair Condition: {hair}
 
 Skin Type: {skin_type}
 
+Recommendation: {for r in rec:
+    print("-", r)}
+
+
 
 """
 
     return result
 
 def beauty_recommendation(acne, wrinkle, dark_circle, hair, skin_type):
-       recommendation = []
-  if "Moderate" in acne or "Severe" in acne:
-        rec.append("Use Salicylic Acid Cleanser")
-        rec.append("Anti-acne facial treatment")
 
-  if "Moderate" in wrinkle or "High" in wrinkle:
-        rec.append("Use Retinol Anti-aging Cream")
+    recommendations = []
 
-  if "Dark" in dark_circle:
-        rec.append("Vitamin C Eye Cream")
+    if "Moderate" in acne or "Severe" in acne:
+        recommendations.append("Use Salicylic Acid Cleanser")
+        recommendations.append("Acne Treatment Facial")
 
-  if "Hair Loss" in hair:
-        rec.append("Use Biotin Shampoo")
-        rec.append("Hair Growth Serum")
+    if "Moderate" in wrinkle or "High" in wrinkle:
+        recommendations.append("Use Retinol Cream")
+        recommendations.append("Anti-aging Facial")
 
-  if skin_type == "Dry Skin":
-        rec.append("Use Hyaluronic Moisturizer")
+    if "Dark" in dark_circle:
+        recommendations.append("Vitamin C Eye Cream")
+        recommendations.append("Improve Sleep Schedule")
 
-         return recommendation
+    if "Hair Loss" in hair:
+        recommendations.append("Use Biotin Shampoo")
+        recommendations.append("Hair Growth Serum")
+        recommendations.append("Scalp Therapy")
+
+    if "Dry" in skin_type or "Dull" in skin_type:
+        recommendations.append("Use gentle and thick moisturizers")
+        recommendations.append("Use Hydrating Cleanser")
+        recommendations.append("Avoid Hot Showers")
+
+    if "Oily" in skin_type or "Shiny" in skin_type:
+        recommendations.append("Use Matte-finish sunscreen")
+        recommendations.append("Use Niacinamide Serum")
+        recommendations.append("Using Gel-based cleanser contain Salicylic Acid")
+
+    return recommendations
+
+rec = beauty_recommendation(acne_level, wrinkle_level, dark_circle_level, hair_result,skin_type)
+
+print("------ Personalized Beauty Plan ------")
+
+for r in rec:
+    print("-", r)
 
 def predictive_homecare(acne, wrinkle, dark_circle, hair):
 
