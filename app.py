@@ -216,9 +216,9 @@ if uploaded_file is not None:
 
     st.subheader("Personalized Beauty Recommendation") 
 
-   st.write("### Recommendations")
+    st.write("### Recommendations")
     for r in recommendation:
-     st.write("-", r)
+      st.write("-", r)
 
  morning, night, haircare = predictive_homecare(acne, wrinkle, dark_circle, hair)
 
