@@ -104,7 +104,7 @@ def detect_hair_loss(img):
 # RECOMMENDATION
 # -----------------------------
 
-def beauty_recommendation(acne, wrinkles, dark_circle, hair, skin_type):
+def beauty_recommendation(acne, wrinkle, dark_circle, hair, skin_type):
 
     rec = []
 
@@ -181,7 +181,7 @@ if uploaded_file is not None:
     st.write("Skin Type:", skin)
     st.write("Hair Condition:", hair)
 
-    rec = beauty_recommendation(acne, wrinkles, dark_circle, hair, skin)
+    rec = beauty_recommendation(acne, wrinkle, dark_circle, hair, skin)
 
     st.subheader("Personalized Beauty Recommendation")
 
