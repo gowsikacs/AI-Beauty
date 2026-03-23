@@ -41,11 +41,11 @@ def detect_wrinkles(face):
 
     wrinkle_score = np.sum(edges)
 
-   if wrinkle_score  < 10000:
+   if wrinkle_score  < 1000:
         result = "Low Wrinkles"
-    elif wrinkle_score <  50000:
+    elif wrinkle_score <  5000:
         result = "Moderate Wrinkles"
-    elif wrinkle_score  < 100000:
+    elif wrinkle_score  < 10000:
         result = "High Wrinkles"
     else:
         result = "Severe Wrinkles"
